@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gang_nam_korea/env/theme_mng.dart';
-import 'package:gang_nam_korea/model/constants.dart';
+import 'package:gang_nam_korea/model/category.dart';
 import 'package:gang_nam_korea/view/main_tab_page/main_tab_page.dart';
 import 'package:gang_nam_korea/view/pages/test_page.dart';
 
@@ -19,7 +19,10 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 10);
+
+    CatetoryMng.init();
+
+    _tabController = TabController(vsync: this, length: CatetoryMng.categorys.length);
     _tabController.addListener(() {
       setState(() {
         indexTabColor = _tabController.index;
@@ -81,18 +84,9 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
                     indicatorColor: Colors.white.withAlpha(150),
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorWeight: 3,
-                    tabs: const <Widget>[
-                      Tab(text: "  홈  "), // 홈(인기글, 뉴스, 갤러리, 공지, 이벤트 등)
-                      Tab(text: " 인기 "),
-                      Tab(text: " 유머 "),
-                      Tab(text: " 뉴스 "),
-                      Tab(text: " 스포츠 "),
-                      Tab(text: " 게임 "),
-                      Tab(text: " 방송 "),
-                      Tab(text: " 쇼핑 "), // 코디
-                      Tab(text: " 커뮤니티 "), // 자유, 연애상담, 자동차, 경제,
-                      Tab(text: " 갤러리 "),
-                    ],
+                    tabs: CatetoryMng.categorys.map((e) {
+                      return Tab(text: e.name);
+                    }).toList(),
                     controller: _tabController,
                   ),
                 ),
@@ -102,21 +96,11 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
         ),
       ),
       body: TabBarView(
-        controller: _tabController,
-        physics: const BouncingScrollPhysics(),
-        children: const <Widget>[
-          MainTabPage(pageType: MainTabPageType.home),
-          MainTabPage(pageType: MainTabPageType.best),
-          MainTabPage(pageType: MainTabPageType.humor),
-          MainTabPage(pageType: MainTabPageType.news),
-          MainTabPage(pageType: MainTabPageType.sports),
-          MainTabPage(pageType: MainTabPageType.game),
-          MainTabPage(pageType: MainTabPageType.broadcast),
-          MainTabPage(pageType: MainTabPageType.shopping),
-          MainTabPage(pageType: MainTabPageType.community),
-          MainTabPage(pageType: MainTabPageType.gallery),
-        ],
-      ),
+          controller: _tabController,
+          physics: const BouncingScrollPhysics(),
+          children: CatetoryMng.categorys.map((category) {
+            return MainTabPage(category: category);
+          }).toList()),
     );
   }
 }
