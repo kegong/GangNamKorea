@@ -1,17 +1,18 @@
 class Category {
   final String keyName;
   final String name;
+  final bool isViewSubCategory;
+  final bool isViewFilter;
   final List<SubCatetory> subCategorys = [];
 
-  Category(this.keyName, this.name);
+  Category(this.keyName, this.name, this.isViewSubCategory, this.isViewFilter);
 
   static factory(String keyName, String name) {
-    Category category = Category(keyName, name);
+    Category? category;
 
-    if (keyName == "home") {
-      category.subCategorys.add(SubCatetory("home_home", "홈"));
-      category.subCategorys.add(SubCatetory("home_home", "홈"));
-      category.subCategorys.add(SubCatetory("home_home", "홈"));
+    if (keyName == "best") {
+      category = Category(keyName, name, true, true);
+      category.subCategorys.add(SubCatetory("best_home", "최신 인기"));
     }
 
     return category;
