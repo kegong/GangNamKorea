@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/view/main_tab_page/main_tabs.dart';
+import 'package:gang_nam_korea/view/pages/main/main_tabs.dart';
+import 'package:get/get.dart';
 import 'env/theme_mng.dart';
 
 void main() {
@@ -12,11 +13,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.a
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Gang Nam Korea',
       theme: ThemeMng.defaultTheme,
-      home: const MainTabs(),
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => const MainTabs()),
+        GetPage(name: '/mainTabs', page: () => const MainTabs()),
+      ],
     );
   }
 }

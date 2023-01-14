@@ -13,6 +13,8 @@ class Category {
     if (keyName == "best") {
       category = Category(keyName, name, true, true);
       category.subCategorys.add(SubCatetory("best_home", "최신 인기"));
+    } else {
+      category = Category(keyName, name, true, true);
     }
 
     return category;

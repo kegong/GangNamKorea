@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gang_nam_korea/env/theme_mng.dart';
 import 'package:gang_nam_korea/model/category.dart';
-import 'package:gang_nam_korea/view/main_tab_page/main_tab_page.dart';
+import 'package:gang_nam_korea/view/pages/main/main_tab_page.dart';
 import 'package:gang_nam_korea/view/pages/test_page.dart';
 
 class MainTabs extends StatefulWidget {
