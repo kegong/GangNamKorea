@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659846593054",
+    "project_id": "gang-nam-korea",
+    "storage_bucket": "gang-nam-korea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659846593054:android:3b3fc5b6700ad529f84c0f",
+        "android_client_info": {
+          "package_name": "com.btstech.gang_nam_korea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659846593054-201m2lnbng57jmtu01hicm91a2qlus0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBosYGNh9eEQb20QIBNv_2hjVykGT5Xgus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659846593054-201m2lnbng57jmtu01hicm91a2qlus0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

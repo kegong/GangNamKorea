@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/model/category.dart';
+import 'package:gang_nam_korea/scr/model/category.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({super.key, required this.category});

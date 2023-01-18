@@ -1,9 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/view/pages/main/main_tabs.dart';
+import 'package:gang_nam_korea/scr/view/pages/login/loading_page.dart';
+import 'package:gang_nam_korea/scr/view/pages/main/main_tabs.dart';
 import 'package:get/get.dart';
-import 'env/theme_mng.dart';
+import 'scr/controller/bind/init_binding.dart';
+import 'scr/env/theme_mng.dart';
+import 'scr/model/constants.dart';
+import 'scr/view/pages/login/login_join_page.dart';
+import 'scr/view/pages/login/server_login_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,13 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Gang Nam Korea',
-      theme: ThemeMng.defaultTheme,
       debugShowCheckedModeBanner: false,
+      title: ConstValue.titleName,
+      theme: ThemeMng.defaultTheme,
+      initialBinding: InitBinding(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const MainTabs()),
-        GetPage(name: '/mainTabs', page: () => const MainTabs()),
+        GetPage(name: '/', page: () => const LoadingPage()),
+        GetPage(name: '/login', page: () => const LoginJoinPage()),
+        GetPage(name: '/serverlogin', page: () => const ServerLoginPage()),
+        GetPage(name: '/main', page: () => const MainTabs()),
       ],
     );
   }
