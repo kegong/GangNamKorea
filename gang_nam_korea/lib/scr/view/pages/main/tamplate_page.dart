@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/scr/model/category.dart';
 
-class MainTabPage extends StatefulWidget {
-  const MainTabPage({super.key, required this.category});
+class TamplatePage extends StatefulWidget {
+  const TamplatePage({super.key, required this.category});
 
   final Category category;
 
   @override
-  State<MainTabPage> createState() => _MainTabPageState();
+  State<TamplatePage> createState() => _TamplatePageState();
 }
 
-class _MainTabPageState extends State<MainTabPage> with AutomaticKeepAliveClientMixin {
+class _TamplatePageState extends State<TamplatePage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 

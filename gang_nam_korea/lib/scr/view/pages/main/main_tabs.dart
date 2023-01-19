@@ -79,7 +79,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
           controller: _controller.tabController,
           physics: const BouncingScrollPhysics(),
           children: CatetoryMng.categorys.map((category) {
-            return MainTabPage(category: category);
+            return TamplatePage(category: category);
           }).toList()),
       drawer: Drawer(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
