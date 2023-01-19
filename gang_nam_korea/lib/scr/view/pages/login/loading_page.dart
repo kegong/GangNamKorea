@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/scr/controller/auth_controller.dart';
+import 'package:gang_nam_korea/scr/viewmodel/common/auth_controller.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});

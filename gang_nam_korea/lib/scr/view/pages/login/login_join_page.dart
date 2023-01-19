@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/scr/env/theme_mng.dart';
-import 'package:gang_nam_korea/scr/controller/auth_controller.dart';
+import 'package:gang_nam_korea/scr/viewmodel/common/auth_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginJoinPage extends StatefulWidget {

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:gang_nam_korea/scr/controller/app_controller.dart';
-import 'package:gang_nam_korea/scr/controller/server_controller.dart';
-import 'package:gang_nam_korea/scr/view/component/common_widget.dart';
+import 'package:gang_nam_korea/scr/viewmodel/common/app_controller.dart';
+import 'package:gang_nam_korea/scr/viewmodel/common/server_controller.dart';
+import 'package:gang_nam_korea/scr/view/common/common_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/scr/view/pages/login/loading_page.dart';
 import 'package:gang_nam_korea/scr/view/pages/main/main_tabs.dart';
 import 'package:get/get.dart';
-import 'scr/controller/bind/init_binding.dart';
+import 'scr/viewmodel/common/bind/init_binding.dart';
 import 'scr/env/theme_mng.dart';
 import 'scr/model/constants.dart';
 import 'scr/view/pages/login/login_join_page.dart';
