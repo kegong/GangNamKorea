@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gang_nam_korea/scr/model/category.dart';
 import 'package:gang_nam_korea/scr/view/pages/main/tamplate_page.dart';
 import 'package:gang_nam_korea/scr/viewmodel/pages/main/main_tabs_controller.dart';
 import 'package:get/get.dart';
+
+import '../../../viewmodel/common/category_controller.dart';
 
 class MainTabs extends StatefulWidget {
   const MainTabs({super.key});
@@ -65,8 +66,8 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
                           indicatorColor: Colors.white.withAlpha(150),
                           indicatorSize: TabBarIndicatorSize.label,
                           indicatorWeight: 3,
-                          tabs: CatetoryMng.categorys.map((e) {
-                            return Tab(text: e.name);
+                          tabs: CatetoryController.to.categorys.map((e) {
+                            return Tab(text: ' ${e.name} ');
                           }).toList(),
                           controller: _controller.tabController,
                         ),
@@ -78,7 +79,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
       body: TabBarView(
           controller: _controller.tabController,
           physics: const BouncingScrollPhysics(),
-          children: CatetoryMng.categorys.map((category) {
+          children: CatetoryController.to.categorys.map((category) {
             return TamplatePage(category: category);
           }).toList()),
       drawer: Drawer(

@@ -1,61 +1,48 @@
-class Category {
+class CategoryData {
   final String keyName;
   final String name;
   final bool isViewSubCategory;
   final bool isViewFilter;
-  final List<SubCatetory> subCategorys = [];
+  final List<MenuData> menus = [];
 
-  Category(this.keyName, this.name, this.isViewSubCategory, this.isViewFilter);
+  CategoryData(this.keyName, this.name, this.isViewSubCategory, this.isViewFilter);
 
-  static factory(String keyName, String name) {
-    Category? category;
+  static factory(String keyName, String name, Map<String, dynamic>? menus) {
+    CategoryData category = CategoryData(keyName, name, true, true);
 
-    if (keyName == "best") {
-      category = Category(keyName, name, true, true);
-      category.subCategorys.add(SubCatetory("best_home", "최신 인기"));
-    } else {
-      category = Category(keyName, name, true, true);
+    if (menus != null) {
+      menus.forEach((key, menu) {
+        category.menus.add(MenuData.factory(key, menu['name'], menu['subMenu']));
+      });
     }
 
     return category;
   }
 }
 
-class SubCatetory {
+class MenuData {
   final String keyName;
   final String name;
-  final List<Filter> filters = [];
+  final List<SubMenuData> subMenus = [];
 
-  SubCatetory(this.keyName, this.name) {
-    if (keyName == "home_home") {
-      filters.add(Filter("keyName", "name"));
-      filters.add(Filter("keyName", "name"));
+  MenuData(this.keyName, this.name);
+
+  static factory(String keyName, String name, Map<String, dynamic>? subMenus) {
+    MenuData menu = MenuData(keyName, name);
+
+    if (subMenus != null) {
+      subMenus.forEach((key, subMenu) {
+        menu.subMenus.add(SubMenuData(key, subMenu['name']));
+      });
     }
-  }
 
-  static factory(String keyName, String name) {}
+    return menu;
+  }
 }
 
-class Filter {
+class SubMenuData {
   final String keyName;
   final String name;
 
-  Filter(this.keyName, this.name);
-}
-
-class CatetoryMng {
-  static List<Category> categorys = [];
-
-  static init() {
-    categorys.add(Category.factory("home", "  홈  "));
-    categorys.add(Category.factory("best", " 인기 "));
-    categorys.add(Category.factory("humor", " 유머 "));
-    categorys.add(Category.factory("news", " 뉴스 "));
-    categorys.add(Category.factory("sports", " 스포츠 "));
-    categorys.add(Category.factory("game", " 게임 "));
-    categorys.add(Category.factory("broadcast", " 방송 "));
-    categorys.add(Category.factory("shopping", " 쇼핑 "));
-    categorys.add(Category.factory("community", " 커뮤니티 "));
-    categorys.add(Category.factory("gallery", " 갤러리 "));
-  }
+  SubMenuData(this.keyName, this.name);
 }

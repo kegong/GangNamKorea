@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/scr/model/category.dart';
 import 'package:get/get.dart';
+
+import '../../common/category_controller.dart';
 
 class MainTabsController extends GetxController {
   late TabController _tabController;
@@ -10,9 +11,7 @@ class MainTabsController extends GetxController {
   int indexTabColor = 0;
 
   void initState({required TickerProvider vsync}) {
-    CatetoryMng.init();
-
-    _tabController = TabController(vsync: vsync, length: CatetoryMng.categorys.length);
+    _tabController = TabController(vsync: vsync, length: CatetoryController.to.categorys.length);
     _tabController.addListener(() {
       indexTabColor = _tabController.index;
       tabBarColor(_getTabBarColor());

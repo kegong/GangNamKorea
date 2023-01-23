@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:gang_nam_korea/scr/viewmodel/common/app_controller.dart';
+import 'package:gang_nam_korea/scr/viewmodel/common/category_controller.dart';
 import 'package:gang_nam_korea/scr/viewmodel/common/server_controller.dart';
 import 'package:gang_nam_korea/scr/view/common/common_widget.dart';
 import 'package:get/get.dart';
@@ -148,6 +149,8 @@ class AuthController extends GetxController {
       {'email': _user.value!.email, 'authKey': _user.value!.uid},
       retFunc: (json) async {
         AppController.to.setUserData(int.parse(json['userNo']), _user.value!.uid);
+        CatetoryController.to.fromJson(json['category']);
+
         Get.offAllNamed('/main');
       },
       errorFunc: (error, {json}) {
@@ -160,7 +163,7 @@ class AuthController extends GetxController {
   void requestJoinToServer() {
     ServerController.to.request(
       'USER_JOIN',
-      {'email': _user.value!.email, 'authKey': _user.value!.uid, 'nickname': joinNickName},
+      {'email': _user.value!.email, 'authKey': _user.value!.uid, 'nickName': joinNickName},
       retFunc: (json) async {
         Get.offAllNamed('/main');
       },
