@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.1.7
   enum_to_string: ^2.0.1
   intl: ^0.17.0
+  html_editor_enhanced: ^2.2.0+1-dev.1
 
 dev_dependencies:
   flutter_test:
