@@ -15,17 +15,17 @@ class _TamplatePageState extends State<TamplatePage> with AutomaticKeepAliveClie
   bool get wantKeepAlive => true;
 
   Widget _makeTestImage() {
-    if (widget.category.keyName == "home") {
+    if (widget.category.categoryKey == "home") {
       return const Image(image: AssetImage('assets/images/test/content1.png'));
     }
-    if (widget.category.keyName == "best") {
+    if (widget.category.categoryKey == "best") {
       return const Image(image: AssetImage('assets/images/test/content2.png'));
     }
 
     return const Image(image: AssetImage('assets/images/test/content3.png'));
   }
 
-  Widget _makeSubMenu() {
+  Widget _makeMenu() {
     return const Card(
       child: Text("text"),
     );
@@ -53,7 +53,7 @@ class _TamplatePageState extends State<TamplatePage> with AutomaticKeepAliveClie
     return SingleChildScrollView(
       child: Column(
         children: [
-          _makeSubMenu(),
+          _makeMenu(),
           _makeFilter(),
           _makeContentList(),
         ],

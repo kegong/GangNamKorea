@@ -7,7 +7,7 @@ class CatetoryController extends GetxController {
 
   List<CategoryData> categorys = [];
 
-  void fromJson(Map<String, dynamic> json) {
+  void loadCategoryFromJson(Map<String, dynamic> json) {
     json.forEach((key, category) {
       categorys.add(CategoryData.factory(key, category['name'], category['menu']));
     });

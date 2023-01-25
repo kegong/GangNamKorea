@@ -5,7 +5,7 @@ import 'package:gang_nam_korea/src/view/pages/main/main_tabs.dart';
 import 'package:get/get.dart';
 import 'src/viewmodel/common/bind/init_binding.dart';
 import 'src/env/theme_mng.dart';
-import 'src/model/constants.dart';
+import 'src/env/constants.dart';
 import 'src/view/pages/login/login_join_page.dart';
 import 'src/view/pages/login/server_login_page.dart';
 

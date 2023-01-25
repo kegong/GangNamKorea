@@ -149,7 +149,7 @@ class AuthController extends GetxController {
       {'email': _user.value!.email, 'authKey': _user.value!.uid},
       retFunc: (json) async {
         AppController.to.setUserData(int.parse(json['userNo']), _user.value!.uid);
-        CatetoryController.to.fromJson(json['category']);
+        CatetoryController.to.loadCategoryFromJson(json['category']);
 
         Get.offAllNamed('/main');
       },
@@ -165,7 +165,7 @@ class AuthController extends GetxController {
       'USER_JOIN',
       {'email': _user.value!.email, 'authKey': _user.value!.uid, 'nickName': joinNickName},
       retFunc: (json) async {
-        Get.offAllNamed('/main');
+        requestLoginToServer();
       },
       errorFunc: (error, {json}) {
         // 에러 상태 표시

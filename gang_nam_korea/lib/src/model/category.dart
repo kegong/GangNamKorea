@@ -1,18 +1,20 @@
+import '../viewmodel/util/extention.dart';
+
 class CategoryData {
-  final String keyName;
+  final String categoryKey;
   final String name;
   final bool isViewSubCategory;
   final bool isViewFilter;
   final List<MenuData> menus = [];
 
-  CategoryData(this.keyName, this.name, this.isViewSubCategory, this.isViewFilter);
+  CategoryData(this.categoryKey, this.name, this.isViewSubCategory, this.isViewFilter);
 
-  static factory(String keyName, String name, Map<String, dynamic>? menus) {
-    CategoryData category = CategoryData(keyName, name, true, true);
+  static factory(String categoryKey, String name, Map<String, dynamic>? iMenus) {
+    CategoryData category = CategoryData(categoryKey, name, true, true);
 
-    if (menus != null) {
-      menus.forEach((key, menu) {
-        category.menus.add(MenuData.factory(key, menu['name'], menu['subMenu']));
+    if (iMenus != null) {
+      iMenus.forEach((menuKey, menu) {
+        category.menus.add(MenuData.factory(menuKey, menu['name'], Parser.toBool(menu['isBoard']), menu['subMenu']));
       });
     }
 
@@ -21,18 +23,19 @@ class CategoryData {
 }
 
 class MenuData {
-  final String keyName;
+  final String menuKey;
   final String name;
+  bool isBoard;
   final List<SubMenuData> subMenus = [];
 
-  MenuData(this.keyName, this.name);
+  MenuData(this.menuKey, this.name, this.isBoard);
 
-  static factory(String keyName, String name, Map<String, dynamic>? subMenus) {
-    MenuData menu = MenuData(keyName, name);
+  static factory(String menuKey, String name, bool isBoard, Map<String, dynamic>? iSubMenus) {
+    MenuData menu = MenuData(menuKey, name, isBoard);
 
-    if (subMenus != null) {
-      subMenus.forEach((key, subMenu) {
-        menu.subMenus.add(SubMenuData(key, subMenu['name']));
+    if (iSubMenus != null) {
+      iSubMenus.forEach((subMenuKey, subMenu) {
+        menu.subMenus.add(SubMenuData(subMenuKey, subMenu['name'], Parser.toBool(subMenu['isBoard'])));
       });
     }
 
@@ -41,8 +44,9 @@ class MenuData {
 }
 
 class SubMenuData {
-  final String keyName;
+  final String subMenukey;
   final String name;
+  bool isBoard;
 
-  SubMenuData(this.keyName, this.name);
+  SubMenuData(this.subMenukey, this.name, this.isBoard);
 }

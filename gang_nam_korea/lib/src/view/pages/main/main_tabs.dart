@@ -6,6 +6,7 @@ import 'package:gang_nam_korea/src/viewmodel/pages/main/main_tabs_controller.dar
 import 'package:get/get.dart';
 
 import '../../../viewmodel/common/category_controller.dart';
+import 'main_drawer.dart';
 
 class MainTabs extends StatefulWidget {
   const MainTabs({super.key});
@@ -82,32 +83,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
           children: CatetoryController.to.categorys.map((category) {
             return TamplatePage(category: category);
           }).toList()),
-      drawer: Drawer(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            height: 100,
-            color: Colors.red,
-          ),
-          Container(
-            height: 100,
-            color: Colors.green,
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('글쓰기'),
-              ),
-            ),
-          ),
-          Container(
-            height: 100,
-            color: Colors.yellow,
-          ),
-          Container(
-            height: 100,
-            color: Colors.blue,
-          ),
-        ]),
-      ),
+      drawer: const MainDrawer(),
     );
   }
 }
