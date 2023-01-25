@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:gang_nam_korea/scr/viewmodel/common/app_controller.dart';
-import 'package:gang_nam_korea/scr/viewmodel/common/category_controller.dart';
-import 'package:gang_nam_korea/scr/viewmodel/common/server_controller.dart';
-import 'package:gang_nam_korea/scr/view/common/common_widget.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/app_controller.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/category_controller.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/server_controller.dart';
+import 'package:gang_nam_korea/src/view/common/common_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';

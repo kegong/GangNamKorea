@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/scr/view/pages/login/loading_page.dart';
-import 'package:gang_nam_korea/scr/view/pages/main/main_tabs.dart';
+import 'package:gang_nam_korea/src/view/pages/login/loading_page.dart';
+import 'package:gang_nam_korea/src/view/pages/main/main_tabs.dart';
 import 'package:get/get.dart';
-import 'scr/viewmodel/common/bind/init_binding.dart';
-import 'scr/env/theme_mng.dart';
-import 'scr/model/constants.dart';
-import 'scr/view/pages/login/login_join_page.dart';
-import 'scr/view/pages/login/server_login_page.dart';
+import 'src/viewmodel/common/bind/init_binding.dart';
+import 'src/env/theme_mng.dart';
+import 'src/model/constants.dart';
+import 'src/view/pages/login/login_join_page.dart';
+import 'src/view/pages/login/server_login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding();

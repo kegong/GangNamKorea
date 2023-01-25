@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gang_nam_korea/scr/view/pages/main/tamplate_page.dart';
-import 'package:gang_nam_korea/scr/viewmodel/pages/main/main_tabs_controller.dart';
+import 'package:gang_nam_korea/src/view/pages/main/tamplate_page.dart';
+import 'package:gang_nam_korea/src/viewmodel/pages/main/main_tabs_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../viewmodel/common/category_controller.dart';

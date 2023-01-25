@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:gang_nam_korea/scr/viewmodel/common/app_controller.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/app_controller.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'dart:convert' as convert;

@@ -1,4 +1,4 @@
-import 'package:gang_nam_korea/scr/model/user_data.dart';
+import 'package:gang_nam_korea/src/model/user_data.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController {

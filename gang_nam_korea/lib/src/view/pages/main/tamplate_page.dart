@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gang_nam_korea/scr/model/category.dart';
+import 'package:gang_nam_korea/src/model/category.dart';
 
 class TamplatePage extends StatefulWidget {
   const TamplatePage({super.key, required this.category});
