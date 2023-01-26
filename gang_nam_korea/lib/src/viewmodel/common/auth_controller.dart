@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../env/theme_mng.dart';
+
 class AuthController extends GetxController {
   static AuthController get to => Get.find();
 
@@ -52,15 +54,15 @@ class AuthController extends GetxController {
       Get.snackbar(
         "Error message",
         "User message",
-        backgroundColor: Colors.red,
+        backgroundColor: AppColor.textWhite,
         snackPosition: SnackPosition.BOTTOM,
         titleText: const Text(
           "Registration is failed",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppColor.textWhite),
         ),
         messageText: Text(
           e.toString(),
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppColor.textWhite),
         ),
       );
     }
@@ -77,15 +79,15 @@ class AuthController extends GetxController {
       Get.snackbar(
         "Error message",
         "User message",
-        backgroundColor: Colors.red,
+        backgroundColor: AppColor.errorBackgroundRed,
         snackPosition: SnackPosition.BOTTOM,
         titleText: const Text(
           "Registration is failed",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppColor.textWhite),
         ),
         messageText: Text(
           e.toString(),
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppColor.textWhite),
         ),
       );
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gang_nam_korea/src/env/theme_mng.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
@@ -14,11 +15,11 @@ class _MainDrawerState extends State<MainDrawer> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
           height: 100,
-          color: Colors.red,
+          color: AppColor.red,
         ),
         Container(
           height: 100,
-          color: Colors.green,
+          color: AppColor.green,
           child: Center(
             child: ElevatedButton(
               onPressed: () {},
@@ -28,11 +29,11 @@ class _MainDrawerState extends State<MainDrawer> {
         ),
         Container(
           height: 100,
-          color: Colors.yellow,
+          color: AppColor.yellow,
         ),
         Container(
           height: 100,
-          color: Colors.blue,
+          color: AppColor.blue,
         ),
       ]),
     );

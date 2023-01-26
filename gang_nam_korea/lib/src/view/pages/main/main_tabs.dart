@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gang_nam_korea/src/env/theme_mng.dart';
 import 'package:gang_nam_korea/src/view/pages/main/tamplate_page.dart';
 import 'package:gang_nam_korea/src/viewmodel/pages/main/main_tabs_controller.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
           toolbarHeight: 59,
-          systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+          systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: AppColor.transparent),
           flexibleSpace: Obx((() => Container(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -49,7 +50,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
                   child: Row(
                     children: [
                       // IconButton(
-                      //   icon: const Icon(Icons.menu, color: CustomColors.iconWhite),
+                      //   icon: const Icon(Icons.menu, color: AppColor.iconWhite),
                       //   onPressed: () {
                       //     // Navigator.push(context, MaterialPageRoute(builder: ((context) => const TestPage())));
                       //     //AuthController.to.logoutFirebase();
@@ -64,7 +65,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
                           labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
                           labelPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                          indicatorColor: Colors.white.withAlpha(150),
+                          indicatorColor: AppColor.tabBarIndicatorColor,
                           indicatorSize: TabBarIndicatorSize.label,
                           indicatorWeight: 3,
                           tabs: CatetoryController.to.categorys.map((e) {
@@ -77,6 +78,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
                   ),
                 ),
               )))),
+      backgroundColor: AppColor.background,
       body: TabBarView(
           controller: _controller.tabController,
           physics: const BouncingScrollPhysics(),

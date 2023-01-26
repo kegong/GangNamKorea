@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/src/model/category.dart';
 
+import '../../../env/theme_mng.dart';
+
 class TamplatePage extends StatefulWidget {
   const TamplatePage({super.key, required this.category});
 
@@ -26,8 +28,14 @@ class _TamplatePageState extends State<TamplatePage> with AutomaticKeepAliveClie
   }
 
   Widget _makeMenu() {
-    return const Card(
-      child: Text("text"),
+    return Container(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: const Text("text"),
     );
   }
 
@@ -52,6 +60,7 @@ class _TamplatePageState extends State<TamplatePage> with AutomaticKeepAliveClie
     super.build(context);
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _makeMenu(),
           _makeFilter(),

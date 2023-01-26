@@ -42,7 +42,7 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColor.login.background,
 
       // 로딩 스피너
       body: ModalProgressHUD(
@@ -82,16 +82,20 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
               // RichText
               RichText(
                 // TextSpan
-                text: const TextSpan(
+                text: TextSpan(
                   text: '강한 남자들의 커뮤니티!',
-                  style: TextStyle(letterSpacing: 1.0, fontSize: 25, color: Colors.white),
+                  style: TextStyle(
+                    letterSpacing: 1.0,
+                    fontSize: 25,
+                    color: AppColor.login.textColor,
+                  ),
                   // children: [
                   //   TextSpan(
                   //     text: '강남 코리아',
                   //     style: TextStyle(
                   //       letterSpacing: 1.0,
                   //       fontSize: 25,
-                  //       color: Colors.white,
+                  //       color: AppColor.white,
                   //       fontWeight: FontWeight.bold,
                   //     ),
                   //   ),
@@ -103,7 +107,7 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
               ),
               Text(
                 isSignupScreen ? 'Gang Nam Korea' : 'Gang Nam Korea',
-                style: const TextStyle(letterSpacing: 1.0, color: Colors.white),
+                style: const TextStyle(letterSpacing: 1.0, color: AppColor.textWhite),
               ),
             ],
           ),
@@ -114,21 +118,17 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
 
   InputDecoration _makeTextFormInputDecoration(String hint) {
     return InputDecoration(
-        prefixIcon: const Icon(Icons.account_circle, color: CustomColors.iconColor),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.textColor1),
-          borderRadius: BorderRadius.all(
-            Radius.circular(35.0),
-          ),
+        prefixIcon: Icon(Icons.account_circle, color: AppColor.login.iconColor),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColor.login.textColor),
+          borderRadius: const BorderRadius.all(Radius.circular(35.0)),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.textColor1),
-          borderRadius: BorderRadius.all(
-            Radius.circular(35.0),
-          ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColor.login.textColor),
+          borderRadius: const BorderRadius.all(Radius.circular(35.0)),
         ),
         hintText: hint,
-        hintStyle: const TextStyle(fontSize: 14, color: CustomColors.textColor1),
+        hintStyle: TextStyle(fontSize: 14, color: AppColor.login.textColor),
         contentPadding: const EdgeInsets.all(10));
   }
 
@@ -265,11 +265,11 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
         width: MediaQuery.of(context).size.width - 40,
         margin: const EdgeInsets.symmetric(horizontal: 20.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: AppColor.shadowColor,
               blurRadius: 15,
               spreadRadius: 5,
             ),
@@ -295,14 +295,14 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: !isSignupScreen ? CustomColors.activeColor : CustomColors.textColor1),
+                              color: !isSignupScreen ? AppColor.login.activeColor : AppColor.login.textColor),
                         ),
                         if (!isSignupScreen)
                           Container(
                             margin: const EdgeInsets.only(top: 3),
                             height: 2,
                             width: 55,
-                            color: Colors.orange,
+                            color: AppColor.login.orange,
                           )
                       ],
                     ),
@@ -320,14 +320,14 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: isSignupScreen ? CustomColors.activeColor : CustomColors.textColor1),
+                              color: isSignupScreen ? AppColor.login.activeColor : AppColor.login.textColor),
                         ),
                         if (isSignupScreen)
                           Container(
                             margin: const EdgeInsets.only(top: 3),
                             height: 2,
                             width: 65,
-                            color: Colors.orange,
+                            color: AppColor.login.orange,
                           )
                       ],
                     ),
@@ -356,7 +356,7 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
           height: 90,
           width: 90,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColor.white,
             borderRadius: BorderRadius.circular(50),
           ),
           child: GestureDetector(
@@ -379,24 +379,24 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
             },
             child: Container(
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Colors.orange, Colors.red],
+                gradient: LinearGradient(
+                  colors: [AppColor.login.orange, AppColor.login.red],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(30),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
+                    color: AppColor.shadowColor,
                     spreadRadius: 1,
                     blurRadius: 1,
-                    offset: const Offset(0, 1),
+                    offset: Offset(0, 1),
                   ),
                 ],
               ),
               child: const Icon(
                 Icons.arrow_forward,
-                color: Colors.white,
+                color: AppColor.iconWhite,
               ),
             ),
           ),
@@ -421,12 +421,12 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
           TextButton.icon(
             onPressed: () {},
             style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
+                foregroundColor: AppColor.textWhite,
                 minimumSize: const Size(155, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                backgroundColor: CustomColors.googleColor),
+                backgroundColor: AppColor.login.googleColor),
             icon: const Icon(Icons.add),
             label: const Text('Google'),
           ),
