@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/src/env/theme_mng.dart';
+import 'package:get/get.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
@@ -22,7 +23,10 @@ class _MainDrawerState extends State<MainDrawer> {
           color: AppColor.green,
           child: Center(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+                Get.toNamed('/postwrite', arguments: {'boardKey': '', 'post': null});
+              },
               child: const Text('글쓰기'),
             ),
           ),

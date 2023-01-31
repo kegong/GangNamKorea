@@ -4,8 +4,12 @@ class AppColor {
   static const LoginColors login = LoginColors();
 
   static const background = Color(0xFFEEEEEE);
+  static const backgroundWhite = Color(0xFFFFFFFF);
   static const iconWhite = Color(0xFFF0F0F0);
+  static const iconBlack = Color(0xFF202020);
   static const textWhite = Color(0xFFF0F0F0);
+  static const textBlack = Color(0xFF202020);
+  static const textMenuBlack = Color(0xFF606060);
   static const errorBackgroundRed = Color(0xFFEE0000);
   static const shadowColor = Color(0xAA000000);
   static const tabBarIndicatorColor = Color(0xCCFFFFFF);

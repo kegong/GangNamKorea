@@ -1,6 +1,30 @@
 import 'package:flutter/material.dart';
 
 class CommonWidget {
+  static Widget verticalDivider({Color color = const Color(0xFFEEEEEE), double width = 1, double height = 14}) {
+    return Container(color: color, width: width, height: height);
+  }
+
+  static buildIsNew(DateTime? wdate) {
+    if (wdate == null) {
+      return const SizedBox(width: 15);
+    }
+
+    return wdate.difference(DateTime.now()).inDays >= 1
+        ? const Text('ㆍ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red))
+        : const SizedBox(width: 15);
+  }
+
+  static buildCircularProgress() {
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(top: 12.0),
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation(Colors.grey[400]),
+      ),
+    );
+  }
+
   static showConfirmDialog(
     BuildContext context, {
     String? title,
@@ -44,9 +68,11 @@ class CommonWidget {
     String? title,
     String? content,
     VoidCallback? onPressed,
+    VoidCallback? onPressedBackground,
     String? actionText,
-  }) {
-    showDialog(
+  }) async {
+    bool isClose = false;
+    await showDialog(
         context: context,
         builder: (builder) {
           return AlertDialog(
@@ -62,10 +88,15 @@ class CommonWidget {
                 TextButton(
                     onPressed: () {
                       if (onPressed != null) onPressed();
+                      isClose = true;
                       Navigator.pop(context);
                     },
                     child: Text(actionText ?? '확인')),
               ]);
         });
+
+    if (isClose == false) {
+      if (onPressedBackground != null) onPressedBackground();
+    }
   }
 }

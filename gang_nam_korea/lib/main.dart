@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/src/view/pages/login/loading_page.dart';
 import 'package:gang_nam_korea/src/view/pages/main/main_tabs.dart';
+import 'package:gang_nam_korea/src/view/pages/post/post_write_page.dart';
 import 'package:get/get.dart';
 import 'src/viewmodel/common/bind/init_binding.dart';
 import 'src/env/theme_mng.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => const LoginJoinPage()),
         GetPage(name: '/serverlogin', page: () => const ServerLoginPage()),
         GetPage(name: '/main', page: () => const MainTabs()),
+        GetPage(name: '/postwrite', page: () => const PostWritePage()),
       ],
     );
   }

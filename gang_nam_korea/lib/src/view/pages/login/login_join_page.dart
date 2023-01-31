@@ -82,12 +82,12 @@ class _LoginJoinPageState extends State<LoginJoinPage> {
               // RichText
               RichText(
                 // TextSpan
-                text: TextSpan(
+                text: const TextSpan(
                   text: '강한 남자들의 커뮤니티!',
                   style: TextStyle(
                     letterSpacing: 1.0,
                     fontSize: 25,
-                    color: AppColor.login.textColor,
+                    color: AppColor.white,
                   ),
                   // children: [
                   //   TextSpan(
