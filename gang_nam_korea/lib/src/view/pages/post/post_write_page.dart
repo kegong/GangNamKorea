@@ -19,7 +19,9 @@ import '../../../model/post_data.dart';
 import '../../../viewmodel/common/category_controller.dart';
 
 class PostWritePage extends StatefulWidget {
-  const PostWritePage({Key? key}) : super(key: key);
+  const PostWritePage({Key? key, this.post}) : super(key: key);
+
+  final PostData? post;
 
   @override
   State<PostWritePage> createState() => _PostWritePageState();

@@ -53,4 +53,8 @@ class CatetoryController extends GetxController {
 
     return menu;
   }
+
+  CategoryData? getCategoryByBoardKey(String boardKey) {
+    return categorys[0];
+  }
 }

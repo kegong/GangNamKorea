@@ -34,8 +34,8 @@ class ServerController extends GetxController {
       Map<String, dynamic> formQuery = {'API': api};
 
       if (api != 'CHECK_VERSION' && api != 'USER_LOGIN' && api != 'USER_JOIN') {
-        formQuery['userNo'] = AppController.to.userData.value.userNo;
-        formQuery['authKey'] = AppController.to.userData.value.authKey;
+        formQuery['userNo'] = AppController.to.userData.userNo;
+        formQuery['authKey'] = AppController.to.userData.authKey;
       }
 
       formQuery.addAll(queryData);

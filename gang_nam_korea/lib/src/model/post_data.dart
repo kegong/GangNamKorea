@@ -11,7 +11,7 @@ class PostData {
   int readCnt = 0;
   int replyCnt = 0;
   int likeCnt = 0;
-  int unlikeCnt = 0;
+  int dislikeCnt = 0;
   DateTime? wdate;
 
   PostData({
@@ -24,7 +24,7 @@ class PostData {
     required this.readCnt,
     required this.replyCnt,
     required this.likeCnt,
-    required this.unlikeCnt,
+    required this.dislikeCnt,
     required this.wdate,
   });
 
@@ -39,7 +39,7 @@ class PostData {
       readCnt: Parser.toInt(json['readCnt']),
       replyCnt: Parser.toInt(json['replyCnt']),
       likeCnt: Parser.toInt(json['likeCnt']),
-      unlikeCnt: Parser.toInt(json['unlikeCnt']),
+      dislikeCnt: Parser.toInt(json['dislikeCnt']),
       wdate: Parser.toDateTime(json['wdate']),
     );
   }
@@ -59,4 +59,6 @@ class PostData {
 
     return posts;
   }
+
+  static Map<int, int> mapReadPostIds = {};
 }

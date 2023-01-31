@@ -51,6 +51,7 @@ dependencies:
   uuid: ^3.0.7
   cached_network_image: ^3.2.3
   timeago: ^3.3.0
+  flutter_widget_from_html: ^0.9.1
 
 dev_dependencies:
   flutter_test:

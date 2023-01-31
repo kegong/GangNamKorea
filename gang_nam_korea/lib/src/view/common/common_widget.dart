@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CommonWidget {
@@ -24,6 +25,20 @@ class CommonWidget {
       ),
     );
   }
+
+    static buildCircleAvatar({String? photoUrl, double? radius}) {
+    if (photoUrl == null || photoUrl.isEmpty) {
+      return CircleAvatar(
+        radius: radius,
+        backgroundColor: Colors.grey,
+        foregroundImage: const AssetImage('assets/images/empty_avata.png'),
+      );
+    }
+
+    return CircleAvatar(
+        backgroundColor: Colors.grey, foregroundImage: CachedNetworkImageProvider(photoUrl), radius: radius);
+  }
+
 
   static showConfirmDialog(
     BuildContext context, {

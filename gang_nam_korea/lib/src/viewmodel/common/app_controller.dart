@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class AppController extends GetxController {
   static AppController get to => Get.find();
 
-  Rx<UserData> userData = UserData().obs;
+  UserData userData = UserData();
 
   @override
   void onInit() {
@@ -15,9 +15,7 @@ class AppController extends GetxController {
   }
 
   void setUserData(int userNo, String authKey) {
-    userData.update((val) {
-      val!.userNo = userNo;
-      val.authKey = authKey;
-    });
+    userData.userNo = userNo;
+    userData.authKey = authKey;
   }
 }
