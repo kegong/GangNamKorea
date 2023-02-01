@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:gang_nam_korea/src/view/common/common_widget.dart';
 import 'package:gang_nam_korea/src/viewmodel/common/app_controller.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'dart:convert' as convert;
+
+import '../../helper/log_print.dart';
 
 class ServerController extends GetxController {
   static ServerController get to => Get.find();
@@ -68,14 +71,14 @@ class ServerController extends GetxController {
             errString = jsonData['RET2'];
             if (errorFunc != null) errorFunc(errString, json: jsonData);
             if (kDebugMode) {
-              print('RET 에러 : $errString');
+              LogHelper.log('RET 에러 : $errString');
             }
           }
         } catch (e) {
           errString = 'JSON 파싱 에러 $api: ${response.data}';
           if (errorFunc != null) errorFunc(errString);
           if (kDebugMode) {
-            print(errString);
+            LogHelper.log(errString);
           }
         }
       } else {
@@ -83,11 +86,11 @@ class ServerController extends GetxController {
         if (errorFunc != null) errorFunc(errString);
 
         if (kDebugMode) {
-          Get.showSnackbar(GetSnackBar(title: '통신에러', message: errString));
+          CommonWidget.showSnackbar(title: '통신에러', message: errString);
         }
 
         if (kDebugMode) {
-          print(errString);
+          LogHelper.log(errString);
         }
       }
     } catch (e) {
@@ -95,13 +98,13 @@ class ServerController extends GetxController {
       if (errorFunc != null) errorFunc(errString);
 
       if (kDebugMode) {
-        Get.showSnackbar(const GetSnackBar(title: '통신에러', message: '네트워크 에러'));
+        CommonWidget.showSnackbar(title: '통신에러', message: '네트워크 에러');
       }
 
       if (kDebugMode) {
-        print(errString);
+        LogHelper.log(errString);
         e as dio.DioError;
-        print(e.message);
+        LogHelper.log(e.message);
       }
     }
   }

@@ -9,6 +9,7 @@ import 'package:gang_nam_korea/src/viewmodel/common/server_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../helper/log_print.dart';
 import '../../../model/category.dart';
 import '../../../model/post_data.dart';
 import '../../../model/reply_data.dart';
@@ -504,7 +505,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           'oldLikeValue': oldLikeValue,
         },
         retFunc: (json) {
-          print(json['RET2']);
+          LogHelper.log(json['RET2']);
         },
       );
     });
@@ -585,17 +586,17 @@ class _PostDetailPageState extends State<PostDetailPage> {
     //     try {
     //       Uri uri = await LinkClient.instance.defaultTemplate(template: defaultFeed);
     //       await LinkClient.instance.launchKakaoTalk(uri);
-    //       print('카카오톡 공유 성공');
+    //       LogHelper.print('카카오톡 공유 성공');
     //     } catch (e) {
-    //       print('카카오톡 공유 실패 $e');
+    //       LogHelper.print('카카오톡 공유 실패 $e');
     //     }
     //   } else {
     //     try {
     //       Uri shareUrl = await WebSharerClient.instance.defaultTemplateUri(template: defaultFeed);
     //       await launchBrowserTab(shareUrl);
-    //       print('카카오톡 공유 성공');
+    //       LogHelper.print('카카오톡 공유 성공');
     //     } catch (e) {
-    //       print('카카오톡 공유 실패 $e');
+    //       LogHelper.print('카카오톡 공유 실패 $e');
     //     }
     //   }
   }

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gang_nam_korea/src/env/theme_mng.dart';
+import 'package:gang_nam_korea/src/helper/log_print.dart';
 import 'package:gang_nam_korea/src/view/pages/main/tamplate_page.dart';
 import 'package:gang_nam_korea/src/viewmodel/pages/main/main_tabs_controller.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class _MainTabsState extends State<MainTabs> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print("_MainTabsState build!");
+      LogHelper.log('_MainTabsState build!');
     }
     return Scaffold(
       appBar: AppBar(

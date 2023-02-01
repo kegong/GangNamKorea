@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gang_nam_korea/src/env/theme_mng.dart';
 import 'package:gang_nam_korea/src/viewmodel/common/server_controller.dart';
 
+import '../../../helper/log_print.dart';
 import '../../../model/post_data.dart';
 import '../../common/common_widget.dart';
 import 'post_list_item.dart';
@@ -80,7 +81,7 @@ class PostListWidgetState extends State<PostListWidget> with AutomaticKeepAliveC
       loading = true;
     });
 
-    print("POST_LIST 요청");
+    LogHelper.log("POST_LIST 요청");
 
     await ServerController.to.request(
       "POST_LIST",

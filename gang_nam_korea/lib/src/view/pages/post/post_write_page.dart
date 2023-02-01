@@ -15,6 +15,7 @@ import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../helper/log_print.dart';
 import '../../../model/post_data.dart';
 import '../../../viewmodel/common/category_controller.dart';
 
@@ -73,9 +74,9 @@ class _PostWritePageState extends State<PostWritePage> {
 
   void _onFocusChange() {
     if (_focusNode.hasFocus) {
-      print('포커스 있음');
+      LogHelper.log('포커스 있음');
     } else {
-      print('포커스 없음');
+      LogHelper.log('포커스 없음');
     }
   }
 
@@ -183,7 +184,7 @@ class _PostWritePageState extends State<PostWritePage> {
                   },
                   mentionsWeb: ['test1', 'test2', 'test3'],
                   onSelect: (String value) {
-                    print(value);
+                    LogHelper.log(value);
                   }),
             ],
           ),
@@ -211,17 +212,17 @@ class _PostWritePageState extends State<PostWritePage> {
         ListButtons(listStyles: false),
       ],
       onButtonPressed: (ButtonType type, bool? status, Function? updateStatus) {
-        print("button '${describeEnum(type)}' pressed, the current selected status is $status");
+        LogHelper.log("button '${describeEnum(type)}' pressed, the current selected status is $status");
         _focusNode.unfocus();
         return true;
       },
       onDropdownChanged: (DropdownType type, dynamic changed, Function(dynamic)? updateSelectedItem) {
-        print("dropdown '${describeEnum(type)}' changed to $changed");
+        LogHelper.log("dropdown '${describeEnum(type)}' changed to $changed");
         _focusNode.unfocus();
         return true;
       },
       mediaLinkInsertInterceptor: (String url, InsertFileType type) {
-        print(url);
+        LogHelper.log(url);
         return true;
       },
       mediaUploadInterceptor: (PlatformFile file, InsertFileType type) async {
@@ -239,13 +240,13 @@ class _PostWritePageState extends State<PostWritePage> {
           filePath: tempFile.path,
           retFunc: (json) {
             String imageUrl = json['imageUrl'];
-            print(imageUrl);
+            LogHelper.log(imageUrl);
             _htmlEditorController.insertNetworkImage(imageUrl, filename: imageKey);
 
             uploadImageUrls.add(imageUrl);
           },
           errorFunc: (error, {json}) {
-            print('error');
+            LogHelper.log('error');
           },
         );
 
@@ -261,31 +262,31 @@ class _PostWritePageState extends State<PostWritePage> {
   Callbacks htmlCallbacks() {
     return Callbacks(
       onBeforeCommand: (String? currentHtml) {
-        print('html before change is $currentHtml');
+        LogHelper.log('html before change is $currentHtml');
       },
       onChangeContent: (String? changed) {
-        print('content changed to $changed');
+        LogHelper.log('content changed to $changed');
         changedHtmlContent = changed;
         updateIsComposing();
       },
       onChangeCodeview: (String? changed) {
-        print('code changed to $changed');
+        LogHelper.log('code changed to $changed');
       },
       onChangeSelection: (EditorSettings settings) {
-        print('parent element is ${settings.parentElement}');
-        print('font name is ${settings.fontName}');
+        LogHelper.log('parent element is ${settings.parentElement}');
+        LogHelper.log('font name is ${settings.fontName}');
       },
       onDialogShown: () {
-        print('dialog shown');
+        LogHelper.log('dialog shown');
       },
       onEnter: () {
-        print('enter/return pressed');
+        LogHelper.log('enter/return pressed');
       },
       onFocus: () {
-        print('editor focused');
+        LogHelper.log('editor focused');
       },
       onBlur: () {
-        print('editor unfocused');
+        LogHelper.log('editor unfocused');
       },
       onBlurCodeview: () {
         print('codeview either focused or unfocused');
@@ -294,31 +295,31 @@ class _PostWritePageState extends State<PostWritePage> {
         print('init');
       },
       onImageUploadError: (FileUpload? file, String? base64Str, UploadError error) {
-        print(describeEnum(error));
-        print(base64Str ?? '');
+        LogHelper.log(describeEnum(error));
+        LogHelper.log(base64Str ?? '');
         if (file != null) {
-          print(file.name);
-          print(file.size);
-          print(file.type);
+          LogHelper.log(file.name);
+          LogHelper.log(file.size);
+          LogHelper.log(file.type);
         }
       },
       onKeyDown: (int? keyCode) {
-        print('$keyCode key downed');
+        LogHelper.log('$keyCode key downed');
       },
       onKeyUp: (int? keyCode) {
-        print('$keyCode key released');
+        LogHelper.log('$keyCode key released');
       },
       onMouseDown: () {
-        print('mouse downed');
+        LogHelper.log('mouse downed');
       },
       onMouseUp: () {
-        print('mouse released');
+        LogHelper.log('mouse released');
       },
       onPaste: () {
-        print('pasted into editor');
+        LogHelper.log('pasted into editor');
       },
       onScroll: () {
-        print('editor scrolled');
+        LogHelper.log('editor scrolled');
       },
     );
   }

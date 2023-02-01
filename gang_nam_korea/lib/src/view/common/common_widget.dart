@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CommonWidget {
   static Widget verticalDivider({Color color = const Color(0xFFEEEEEE), double width = 1, double height = 14}) {
@@ -26,7 +27,7 @@ class CommonWidget {
     );
   }
 
-    static buildCircleAvatar({String? photoUrl, double? radius}) {
+  static buildCircleAvatar({String? photoUrl, double? radius}) {
     if (photoUrl == null || photoUrl.isEmpty) {
       return CircleAvatar(
         radius: radius,
@@ -38,7 +39,6 @@ class CommonWidget {
     return CircleAvatar(
         backgroundColor: Colors.grey, foregroundImage: CachedNetworkImageProvider(photoUrl), radius: radius);
   }
-
 
   static showConfirmDialog(
     BuildContext context, {
@@ -113,5 +113,9 @@ class CommonWidget {
     if (isClose == false) {
       if (onPressedBackground != null) onPressedBackground();
     }
+  }
+
+  static showSnackbar({String? title, String? message}) {
+    Get.showSnackbar(GetSnackBar(title: title, message: message));
   }
 }
