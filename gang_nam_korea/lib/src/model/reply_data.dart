@@ -1,9 +1,9 @@
-import '../util/extention.dart';
+import '../helper/extention.dart';
 
 class ReplyData {
-  final String replyId;
-  final String userId;
-  final String postId;
+  final int replyNo;
+  final int userNo;
+  final int postNo;
   final int indexNo;
   final bool isSub;
   final String toUserName;
@@ -13,9 +13,9 @@ class ReplyData {
   final String userPhotoUrl;
 
   ReplyData({
-    required this.replyId,
-    required this.userId,
-    required this.postId,
+    required this.replyNo,
+    required this.userNo,
+    required this.postNo,
     required this.indexNo,
     required this.isSub,
     required this.toUserName,
@@ -27,9 +27,9 @@ class ReplyData {
 
   factory ReplyData.fromJson(Map<String, dynamic> json) {
     return ReplyData(
-      replyId: json['replyId'],
-      userId: json['userId'],
-      postId: json['postId'],
+      replyNo: json['replyId'],
+      userNo: json['userId'],
+      postNo: json['postId'],
       indexNo: Parser.toInt(json['indexNo']),
       isSub: json['isSub'] == "1",
       toUserName: json['toUserName'],

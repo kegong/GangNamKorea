@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class TimeUtil {
+class TimeHelper {
   static var weeks = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
   static init() {

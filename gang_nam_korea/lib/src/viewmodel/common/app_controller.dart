@@ -1,5 +1,5 @@
 import 'package:gang_nam_korea/src/model/user_data.dart';
-import 'package:gang_nam_korea/src/util/time_util.dart';
+import 'package:gang_nam_korea/src/helper/time_helper.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController {
@@ -11,11 +11,17 @@ class AppController extends GetxController {
   void onInit() {
     super.onInit();
 
-    TimeUtil.init();
+    TimeHelper.init();
   }
 
   void setUserData(int userNo, String authKey) {
     userData.userNo = userNo;
     userData.authKey = authKey;
   }
+
+  bool isMyUserNo(userNo) {
+    return userData.userNo == userNo;
+  }
+
+  RxMap<int, int> blockUsers = <int, int>{}.obs;
 }

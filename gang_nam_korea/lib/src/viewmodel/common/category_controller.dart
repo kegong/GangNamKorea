@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../model/category.dart';
-import '../../util/extention.dart';
+import '../../helper/extention.dart';
 
 class CatetoryController extends GetxController {
   static CatetoryController get to => Get.find();

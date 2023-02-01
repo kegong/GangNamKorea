@@ -6,12 +6,13 @@ import 'package:gang_nam_korea/src/view/pages/post/post_write_page.dart';
 import 'package:gang_nam_korea/src/viewmodel/common/app_controller.dart';
 import 'package:gang_nam_korea/src/viewmodel/common/category_controller.dart';
 import 'package:gang_nam_korea/src/viewmodel/common/server_controller.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../model/category.dart';
 import '../../../model/post_data.dart';
 import '../../../model/reply_data.dart';
-import '../../../util/extention.dart';
+import '../../../helper/extention.dart';
 import '../../common/common_widget.dart';
 import 'complain_page.dart';
 import 'post_list_item.dart';
@@ -101,7 +102,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       {'title': '작성자 차단'},
     ];
 
-    if (post != null && post!.userNo == AppController.to.userData.userNo) {
+    if (post != null && AppController.to.isMyUserNo(post!.userNo)) {
       listFilters = [
         {'title': '수정'},
         {'title': '삭제'},
@@ -537,74 +538,65 @@ class _PostDetailPageState extends State<PostDetailPage> {
       content: '이 회원을 차단하고 쓴 글과 댓글을 보지 않겠습니까?',
       onPressed2: () {
         ServerController.to.request('USER_BLOCK', {'blockUserNo': post!.userNo}, retFunc: (json) {
-          Map<int, int> blockUsers = {};
-          blockUsers.addAll(AppController.to.);
-          blockUsers[post!.userNo] = post!.userNo;
-          FriendPage.isNeedLoad = true;
-          ChatPage.isNeedLoad = true;
-
-          setState(() {
-            gBlockUsers = blockUsers;
-            Navigator.pop(context);
-            HomePage.refreshBoards();
-          });
+          AppController.to.blockUsers.addEntries(<int, int>{post!.userNo: post!.userNo}.entries);
+          Get.back();
         });
       },
     );
   }
 
   shareKakaoTalk() async {
-    String description = post!.subject;
-    if (post!.postType == PostType.gallery) {
-      description = post!.boardId;
-    }
+    //String description = post!.subject;
+    // if (post!.postType == PostType.gallery) {
+    //   description = post!.boardId;
+    // }
 
-    const title = '오늘의 댕댕이';
-    final imageUrl = post!.imgUrl;
-    final url = "http://bbiby2.godohosting.com/odenggel/page/post_view.php?postId=${post!.postNo}";
+    //   const title = ConstValue.titleName;
+    //   final imageUrl = post!.thumbUrl;
+    //   final url = "http://bbiby2.godohosting.com/odenggel/page/post_view.php?postId=${post!.postNo}";
 
-    final FeedTemplate defaultFeed = FeedTemplate(
-      content: Content(
-        title: title,
-        description: description,
-        imageUrl: Uri.parse(imageUrl),
-        link: Link(webUrl: Uri.parse(url), mobileWebUrl: Uri.parse(url)),
-      ),
-      buttons: [
-        Button(
-          title: '웹으로 보기',
-          link: Link(
-            webUrl: Uri.parse(url),
-            mobileWebUrl: Uri.parse(url),
-          ),
-        ),
-        Button(
-          title: '앱으로보기',
-          link: Link(
-            androidExecutionParams: {'key1': 'value1', 'key2': 'value2'},
-            iosExecutionParams: {'key1': 'value1', 'key2': 'value2'},
-          ),
-        ),
-      ],
-    );
+    //   final FeedTemplate defaultFeed = FeedTemplate(
+    //     content: Content(
+    //       title: title,
+    //       description: description,
+    //       imageUrl: Uri.parse(imageUrl),
+    //       link: Link(webUrl: Uri.parse(url), mobileWebUrl: Uri.parse(url)),
+    //     ),
+    //     buttons: [
+    //       Button(
+    //         title: '웹으로 보기',
+    //         link: Link(
+    //           webUrl: Uri.parse(url),
+    //           mobileWebUrl: Uri.parse(url),
+    //         ),
+    //       ),
+    //       Button(
+    //         title: '앱으로보기',
+    //         link: Link(
+    //           androidExecutionParams: {'key1': 'value1', 'key2': 'value2'},
+    //           iosExecutionParams: {'key1': 'value1', 'key2': 'value2'},
+    //         ),
+    //       ),
+    //     ],
+    //   );
 
-    bool result = await LinkClient.instance.isKakaoLinkAvailable();
-    if (result) {
-      try {
-        Uri uri = await LinkClient.instance.defaultTemplate(template: defaultFeed);
-        await LinkClient.instance.launchKakaoTalk(uri);
-        print('카카오톡 공유 성공');
-      } catch (e) {
-        print('카카오톡 공유 실패 $e');
-      }
-    } else {
-      try {
-        Uri shareUrl = await WebSharerClient.instance.defaultTemplateUri(template: defaultFeed);
-        await launchBrowserTab(shareUrl);
-        print('카카오톡 공유 성공');
-      } catch (e) {
-        print('카카오톡 공유 실패 $e');
-      }
-    }
+    //   bool result = await LinkClient.instance.isKakaoLinkAvailable();
+    //   if (result) {
+    //     try {
+    //       Uri uri = await LinkClient.instance.defaultTemplate(template: defaultFeed);
+    //       await LinkClient.instance.launchKakaoTalk(uri);
+    //       print('카카오톡 공유 성공');
+    //     } catch (e) {
+    //       print('카카오톡 공유 실패 $e');
+    //     }
+    //   } else {
+    //     try {
+    //       Uri shareUrl = await WebSharerClient.instance.defaultTemplateUri(template: defaultFeed);
+    //       await launchBrowserTab(shareUrl);
+    //       print('카카오톡 공유 성공');
+    //     } catch (e) {
+    //       print('카카오톡 공유 실패 $e');
+    //     }
+    //   }
   }
 }

@@ -1,5 +1,5 @@
-import '../util/extention.dart';
-import '../util/time_util.dart';
+import '../helper/extention.dart';
+import '../helper/time_helper.dart';
 
 class PostData {
   int postNo = 0;
@@ -45,7 +45,7 @@ class PostData {
   }
 
   String getNameTimeReadCount() {
-    return '$nickName  ${TimeUtil.timeToTodayTimeAfterDay(wdate!)}  조회 ${Parser.toCommaString(readCnt)}  댓글 $replyCnt';
+    return '$nickName  ${TimeHelper.timeToTodayTimeAfterDay(wdate!)}  조회 ${Parser.toCommaString(readCnt)}  댓글 $replyCnt';
   }
 
   static List<PostData> parsePosts(jsonPosts, {List<PostData>? oldPosts}) {

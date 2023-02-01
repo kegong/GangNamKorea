@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gang_nam_korea/src/helper/time_helper.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/app_controller.dart';
+import 'package:gang_nam_korea/src/viewmodel/common/server_controller.dart';
 
 import '../../../model/reply_data.dart';
+import '../../common/common_widget.dart';
+import 'complain_page.dart';
+import 'reply_list_page.dart';
 
 class ReplyListItem extends StatelessWidget {
   const ReplyListItem({
@@ -24,7 +30,7 @@ class ReplyListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (gBlockUsers.containsKey(reply.userId)) {
+    if (AppController.to.blockUsers.containsKey(reply.userNo)) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,7 +54,7 @@ class ReplyListItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          color: reply.userId == gUserData.userId ? Colors.white : Colors.white,
+          color: AppController.to.isMyUserNo(reply.userNo) ? Colors.white : Colors.white,
           child: Padding(
             padding: reply.isSub ? const EdgeInsets.only(top: 12, left: 30) : const EdgeInsets.only(top: 12),
             child: Row(
@@ -56,12 +62,12 @@ class ReplyListItem extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(curUserId: gUserData.userId!),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ProfilePage(curUserId: gUserData.userNo!),
+                    //   ),
+                    // );
                   },
                   child: CommonWidget.buildCircleAvatar(
                     photoUrl: reply.userPhotoUrl,
@@ -74,12 +80,12 @@ class ReplyListItem extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProfilePage(curUserId: gUserData.userId!),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => ProfilePage(curUserId: gUserData.userNo!),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         reply.userName,
@@ -105,8 +111,8 @@ class ReplyListItem extends StatelessWidget {
                       children: [
                         Text(
                           isOnlyTime
-                              ? TimeManager.timeToStringYMDHM(reply.wdate)
-                              : TimeManager.timeToTodayAgoAfterDayTime(reply.wdate),
+                              ? TimeHelper.timeToStringYMDHM(reply.wdate)
+                              : TimeHelper.timeToTodayAgoAfterDayTime(reply.wdate),
                           style: const TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                         const SizedBox(width: 10),
@@ -157,8 +163,8 @@ class ReplyListItem extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) {
           return ReplyListPage(
-            postNo: reply.postId,
-            ownerNo: postOwnerId,
+            postNo: reply.postNo,
+            ownerNo: postOwnerNo,
             indexNo: reply.indexNo,
             toUserName: reply.isSub ? reply.userName : '',
           );
@@ -178,7 +184,7 @@ class ReplyListItem extends StatelessWidget {
           return AlertDialog(
             content: SingleChildScrollView(
               child: ListBody(
-                children: reply.userId == gUserData.userId
+                children: AppController.to.isMyUserNo(reply.userNo)
                     ? [
                         _buildMenuButton(context, '답글 쓰기'),
                         //_buildMenuButton(context, '수정'),
@@ -210,9 +216,9 @@ class ReplyListItem extends StatelessWidget {
             actionText1: '아니요',
             actionText2: '예',
             onPressed2: () {
-              ServerManager.request(
-                  'REPLY_DELETE', {'replyId': reply.replyId, 'postId': reply.postId, 'ownerId': postOwnerId},
-                  retFunc: (json) {
+              ServerController.to
+                  .request('REPLY_DELETE', {'replyNo': reply.replyNo, 'postNo': reply.postNo, 'ownerNo': postOwnerNo},
+                      retFunc: (json) {
                 setReloadFunc();
               });
             },
@@ -220,9 +226,9 @@ class ReplyListItem extends StatelessWidget {
         } else if (title == '신고 하기') {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
             return ComplainPage(
-              otherUserId: reply.userId,
-              postNo: reply.postId,
-              replyId: reply.replyId,
+              otherUserNo: reply.userNo,
+              postNo: reply.postNo,
+              replyNo: reply.replyNo,
               content: reply.content,
               userName: reply.userName,
             );
@@ -230,17 +236,11 @@ class ReplyListItem extends StatelessWidget {
         } else if (title == '작성자 차단') {
           CommonWidget.showConfirmDialog(context, title: '작성자 차단', content: '이 회원을 차단하고 쓴 글과 댓글을 보지 않겠습니까?',
               onPressed2: () {
-            ServerManager.request(
+            ServerController.to.request(
               'USER_BLOCK',
-              {'blockUserId': reply.userId},
+              {'blockUserId': reply.userNo},
               retFunc: (json) {
-                Map<String, String> blockUsers = {};
-                blockUsers.addAll(gBlockUsers);
-                blockUsers[reply.userId] = reply.userId;
-
-                gBlockUsers = blockUsers;
-                FriendPage.isNeedLoad = true;
-                ChatPage.isNeedLoad = true;
+                AppController.to.blockUsers.addEntries(<int, int>{reply.userNo: reply.userNo}.entries);
               },
             );
           });
